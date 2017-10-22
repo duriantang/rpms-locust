@@ -12,7 +12,12 @@ Source0:        https://github.srcurl.net/%{ghuser}/%{ghname}/v%{version}/%{ghna
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-# Requires:
+Requires: python3-zmq >= 16.0.2
+Requires: python3-six >= 1.10.0
+Requires: python3-msgpack >= 0.4.2
+Requires: python3-requests >= 2.9.1
+Requires: python3-flask >= 0.10.1
+Requires: python3-gevent >= 1.2.2
 
 %description
 Locust is an easy-to-use, distributed, user load testing tool. It is intended
