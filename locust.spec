@@ -1,5 +1,4 @@
 %global ghuser locustio
-%global ghname locust
 
 Name:           locust
 Version:        0.8.1
@@ -8,7 +7,7 @@ Summary:        A modern load testing framework
 
 License:        MIT
 URL:            https://locust.io/
-Source0:        https://github.srcurl.net/%{ghuser}/%{ghname}/v%{version}/%{ghname}-%{version}.tar.gz
+Source0:        https://github.srcurl.net/%{ghuser}/%{name}/v%{version}/%{name}-%{version}.tar.gz
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
@@ -29,35 +28,20 @@ concurrent users a system can handle.
 
 
 %build
-%{__python3} setup.py build
+%{py3_build}
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
-%{__python3} setup.py install --skip-build --root %{buildroot}
+%{py3_install}
 
 
 %files
 %license LICENSE
 %doc README.md
-%attr(0755,root,root) %{_bindir}/%{name}
-%dir %{python3_sitelib}/%{name}
-%{python3_sitelib}/%{name}/*.py
-%dir %{python3_sitelib}/%{name}/__pycache__
-%{python3_sitelib}/%{name}/__pycache__/*.py[co]
-%{python3_sitelib}/%{name}/rpc/*.py
-%dir %{python3_sitelib}/%{name}/rpc/__pycache__
-%{python3_sitelib}/%{name}/rpc/__pycache__/*.py[co]
-%dir %{python3_sitelib}/%{name}/test
-%{python3_sitelib}/%{name}/test/*.py
-%dir %{python3_sitelib}/%{name}/test/__pycache__
-%{python3_sitelib}/%{name}/test/__pycache__/*.py[co]
-%dir %{python3_sitelib}/%{name}/static
-%{python3_sitelib}/%{name}/static/*
-%dir %{python3_sitelib}/%{name}/templates
-%{python3_sitelib}/%{name}/templates/*
-%dir %{python3_sitelib}/%{ghuser}-%{version}-*.egg-info
-%{python3_sitelib}/%{ghuser}-%{version}-*.egg-info/*
+%{_bindir}/%{name}
+%{python3_sitelib}/%{name}
+%{python3_sitelib}/%{ghuser}-%{version}-*.egg-info
+
 
 %changelog
 * Fri Oct 20 2017 Hui Tang <duriantang@gmail.com> - 0.8.1-1
